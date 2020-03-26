@@ -1,0 +1,182 @@
+<html>
+
+<!-- I put all my css formatting in here. Simple but effective.-->
+	<style>
+
+	.jumbotron {
+	background-image: url(nasa.jpg);
+	background-size: cover;
+
+	}
+
+	h1.bigliest, p.head1 , p.head2 {
+	margin-left: 20px;
+	}
+
+
+
+	#sightingsTable > th, tr, td {
+		border: 1px white solid;
+		text-align: center;		
+	};
+
+	ul.scroll-menu {
+		   height: 100px;
+		   overflow-y: scroll;
+		}
+		
+	div.col-sm-2 {
+	text-align: center;
+	}
+
+	.col-sm-12.filterRow {
+	text-align: center;
+	}
+	
+	.col-sm-12{
+	text-align: center;
+	}
+
+	</style>
+
+<!-- Header goes here, bootstrap stylesheet goes here-->
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Extraterrestrial Encounters</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+		<!---->
+	</head>
+	<!-- Jumbotron goes at the top of the page and just holds text-->
+	<body>
+		<div class="jumbotron">
+			<h1 class="bigliest">Alien Sightings</h1>
+				<p class="head1">Aliens are out there, plain and simple. Help us track their movements and stay informed (while we still can).</p>
+					<hr>
+				<p class="head2">Click the enter button to see all results, or select search parameters using the dropdown buttons and click the enter button to narrow your search. Note: after searching you must click the reset button prior to clicking any additional dropdowns.</p>
+		</div>
+		<br>
+		<!-- Dropdowns that we'll use for filtering go in here-->
+		<div class="container" id = "filter-container">
+			<div class="row">
+				<!-- Empty column for formatting-->
+				<div class="col-sm-2">
+					<h4>Filter by:</h4>
+				</div>
+				<!-- Date filter-->
+				<div class="col-sm-2"> 
+					<div class="dropdown" id = "date-input">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup = "true" aria-expanded="false">Date
+							<span class="caret"></span>
+						</button>
+							<ul class="dropdown-menu date-list" id = "date-list">
+								<li>def</li>
+							</ul>
+					</div>
+				</div>	
+				<!-- City filter-->
+				<div class="col-sm-2">
+					<div class="dropdown" id = "city-input">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">City
+							<span class="caret"></span>
+						</button>
+								<ul class="dropdown-menu scroll-menu" id = "city-list">
+									<li >def</li>
+								</ul>
+					</div>
+				</div>
+				<!-- State filter-->
+				<div class="col-sm-2">
+					<div class="dropdown" id = "state-input">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">State
+							<span class="caret"></span>
+						</button>
+								<ul class="dropdown-menu" id = "state-list">
+									<li >def</li>
+								</ul>
+					</div>
+				</div>
+				<!-- Country filter-->
+				<div class="col-sm-2">
+					<div class="dropdown" id = "country-input">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Country
+							<span class="caret"></span>
+						</button>
+								<ul class="dropdown-menu" id = "state-list">
+									<li x>def</li>
+								</ul>
+					</div>
+				</div>
+				<!-- UFO shape filter-->
+				<div class="col-sm-2">
+					<div class="dropdown" id = "shape-input">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Shape
+							<span class="caret"></span>
+						</button>
+								<ul class="dropdown-menu" id = "shape-list">
+									<li >def</li>
+								</ul>
+					</div>
+				</div>
+			</div>
+			<br>
+			<!--Since the dropdowns won't show the user's selection for some reason we'll just show what filter has been applied here-->
+			<div class="row">
+				<div class = "col-sm-12 filterRow">
+					<div class ="col-sm-2">
+						<h4 class = "anyfiltersapplied"></h4>
+					</div>
+					<div class="col-sm-2">
+						<h4 class = "datefilterapplied"></h4>
+					</div>
+					<div class="col-sm-2">
+						<h4 class = "cityfilterapplied"></h4>
+					</div>
+					<div class="col-sm-2">
+						<h4 class = "statefilterapplied"></h4>
+					</div>
+					<div class="col-sm-2">
+						<h4 class = "countryfilterapplied"></h4>
+					</div>
+					<div class="col-sm-2">
+						<h4 class = "shapefilterapplied"></h4>
+					</div>
+				</div>
+			</div>
+			<br>
+			<!--The enter button submits the filtering action, the reset button resets the filters as expected-->
+			<div class="row">
+				<div class = "col-sm-12">
+					<br>
+					<button id="enterbutton" type="button" class="btn btn-default">Enter</button>
+					<button id="resetbutton" type="button" class="btn btn-default">Reset</button>
+				</div>
+			</div>
+		</div>
+		<!--Results of the query go here, minimal formatting applied. Function over form here...-->
+		<div class = "container" id = "results-container">
+			<div class="row">
+			  <div class="col-sm-12">
+				<h1 class = "resultbanner"></h1>
+				<table class = "table table-striped" id = "sightingsTable">
+					<thead>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			  </div>
+			</div>
+		</div>
+		
+		
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.0.0/math.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="data.js"></script>
+	<script src="app.js"></script>
+	</body>
+</html>
